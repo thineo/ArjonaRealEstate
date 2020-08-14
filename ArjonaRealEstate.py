@@ -150,7 +150,3 @@ print("\n--------------\n")
 baseline_roi = baseline_account/investment_to_present_value
 print("---Baseline ROI: ", baseline_roi, "x investment in", term_years, "years")
 print("---Baseline ROI a.a: ", (math.pow(baseline_roi, 1/term_years)-1)*100, "% y.o.y")
-
-
-
-
