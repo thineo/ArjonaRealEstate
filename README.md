@@ -10,7 +10,7 @@ Real estate investment: 1000000
 
 Amount to be paid in reais: R$ 660000.0
 
-Amount to be paid in usd: U$ 116558.2175486928
+Amount to be paid in usd: U$ 116558.21
 
 ###################
 
