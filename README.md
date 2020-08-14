@@ -40,20 +40,20 @@ Total 16.66 years  1916595.53
 
 ###################
 
-  Baseline balance: R$ 958210.7598698315
+  Baseline balance: R$ 958210.75
   
 ###################
 
 ###################
 
 Real Estate result:
-    RoI Real Estate:  3.1944579668281774 x investment in 16.66 years
+    RoI Real Estate:  3.19x investment in 16.66 years
     RoI Real Estate a.a:  7.22 % y.o.y
     
 ###################
 
 Baseline result:
-    Baseline ROI:  1.5970839663644532 x investment in 16.66 years
+    Baseline ROI:  1.59x investment in 16.66 years
     Baseline ROI a.a:  2.85 % y.o.y
     
 ###################
