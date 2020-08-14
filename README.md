@@ -1,2 +1,2 @@
 # ArjonaRealEstate
-Brazilian 15y cashflow real estate operation
+Brazilian 200 month real state operation borrowing capital in U$ and R$
