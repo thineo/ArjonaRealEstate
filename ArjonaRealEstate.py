@@ -3,7 +3,7 @@ import math
 MONTH_IN_YEAR = 12
 
 
-# Function to convert anual rate to montly rate
+# Function to convert anual rate to monthly rate
 def convert_to_month_rate(year_rate):
     return math.pow(2, (math.log(inflation, 2)/12))
 
@@ -71,8 +71,8 @@ print("Amount to be paid montly in usd for 60 mo: U$", monthly_payment_usd_for_d
 print("\n###################\n")
 
 monthly_inflation = convert_to_month_rate(inflation)
-monthly_real_state_apprec_rate = convert_to_month_rate(inflation + real_estate_appr_year_rate)
-monthly_secured_invest_apprec_rate = convert_to_month_rate(inflation + secure_investment_return_rate)
+monthly_real_state_apprec_rate = convert_to_month_rate(real_estate_appr_year_rate)
+monthly_secured_invest_apprec_rate = convert_to_month_rate(secure_investment_return_rate)
 
 
 br_account = 0
@@ -85,35 +85,37 @@ real_estate_value = real_estate_acquisition_fee_applied * transac_value
 
 for m in range(1, reais_borrow_term_mo+1):
 
-    monthly_rental_revenue = real_state_rental_rate * real_estate_value * (1 - vacancy_rate)
+    monthly_rental_revenue = real_state_rental_rate * real_estate_value
 
     ################
     # Calculating appreciation real estate, monthly payment in reais
     ################
 
     # Investment income
-    br_account = br_account * monthly_inflation
+    br_account = br_account * monthly_inflation * monthly_secured_invest_apprec_rate
 
     # Rental - br payment diff added to account
     br_account += monthly_rental_revenue - monthly_payment_rs_for_reais_term
 
-    real_estate_value = real_estate_value * monthly_inflation * monthly_real_state_apprec_rate
     monthly_payment_rs_for_reais_term = monthly_payment_rs_for_reais_term * monthly_inflation
 
+    if(m % 12 == 0):
+        real_estate_value = real_estate_value * inflation * real_estate_appr_year_rate
 
+    # print("RSAR:", math.pow(monthly_inflation * monthly_real_state_apprec_rate,12))
+    # print("RSV:", real_estate_value, "-", monthly_payment_rs_for_reais_term)
+    # print("M:", m, "-", monthly_payment_rs_for_reais_term)
 
 ################
 # Operation result Summary
 ################
 
-real_estate_value = (transac_value * real_estate_acquisition_fee_applied) * math.pow( (inflation + real_estate_appr_year_rate -1) , reais_borrow_term_mo/12)
+real_estate_value = real_estate_value
 
 print("Result after 15y\n---\n")
 
 print("Real estate value:", real_estate_value)
 print("BR account: ", br_account)
-
-
 
 print("Balance after 15y: ", (real_estate_value + br_account))
 print("\n###################\n")
@@ -122,11 +124,11 @@ print("\n###################\n")
 # Baseline account
 ################
 
-#
+
 investment_to_present_value = present_value_over_inflation(total_to_be_paid_in_dollar * usd_to_reais_exc_rate, 5, inflation_dollar-1)
 
 print("Total invested:", investment_to_present_value)
-print("RoI Real Estate: ", (real_estate_value + br_account)/investment_to_present_value)
+print("\n---\n\nRoI Real Estate: ", (real_estate_value + br_account)/investment_to_present_value)
 
 baseline_roi = math.pow(inflation*secure_investment_return_rate, reais_borrow_term_mo/12)
 
